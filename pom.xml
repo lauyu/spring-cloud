@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.test.perf</groupId>
 	<artifactId>parent</artifactId>
-	<version>3.0.0</version>
+	<version>0.0.1-snapshot</version>
 	<packaging>pom</packaging>
 	<parent>
 		<groupId>org.springframework.boot</groupId>

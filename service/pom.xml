@@ -6,7 +6,7 @@
 	<parent>
 		<groupId>com.test.perf</groupId>
 		<artifactId>parent</artifactId>
-		<version>3.0.0</version>
+		<version>0.0.1-snapshot</version>
 	</parent>
 	<artifactId>service</artifactId>
 	<name>service</name>
@@ -22,6 +22,11 @@
 		<dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-feign</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.test.perf</groupId>
+            <artifactId>common</artifactId>
+            <version>0.0.1-snapshot</version>
         </dependency>
 	</dependencies>
 	<build>
