@@ -1,0 +1,25 @@
+
+
+# eureka服务器  peer1
+spring:
+  profiles: 
+    active: peer1
+  
+server:
+  port: 8090
+  
+eureka:
+  server:
+    enableSelfPreservation: false #仅限于测试开发阶段，关闭自我保护机制
+  instance:
+#    preferIpAddress: true
+#    ipAddress: 127.0.0.1
+    hostname: 10.16.86.31
+    instanceId: ${spring.application.name}:${vcap.application.instance_id:${spring.application.instance_id:${random.value}}}
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+    serviceUrl:
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+
+      

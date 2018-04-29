@@ -1,0 +1,33 @@
+server:
+    port: 8081
+
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://127.0.0.1:8090/eureka/
+
+spring:
+  application:
+    name: test-api
+#  datasource:
+#    url: jdbc:mysql://rm-bp1n8l70ad8b14hufo.mysql.rds.aliyuncs.com:3306/smart?useUnicode=true&characterEncoding=UTF-8
+#    driverClassName: com.mysql.jdbc.Driver
+#    username: msmart_das_001
+#    password: j7Tw_TKc8 
+#  cloud:
+#    inetutils:
+#      preferred-networks: ^172.
+
+#国内测试接入层kafka
+kafka:
+  producer:
+    enabled: true
+    bootstrap.servers: 10.117.183.80:9092
+    acks: "1"
+    retries: "0"
+    batch.size: "16384"
+    linger.ms: "1"
+    buffer.memory: "33554432"
+    key.serializer: org.apache.kafka.common.serialization.ByteArraySerializer
+    value.serializer: org.apache.kafka.common.serialization.ByteArraySerializer

@@ -1,0 +1,21 @@
+server:
+  port: 8090
+  
+eureka:
+#  waitTimeInMsWhenSyncEmpty: 0
+  server:
+    enableSelfPreservation: false #仅限于测试开发阶段，关闭自我保护机制
+  instance:
+    hostname: localhost
+#    instanceId: ${spring.application.name}:${vcap.application.instance_id:${spring.application.instance_id:${random.value}}}
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+    serviceUrl:
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+
+      
+
+spring:
+  application:
+    name: eureka-server

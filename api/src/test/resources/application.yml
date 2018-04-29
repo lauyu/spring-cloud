@@ -1,0 +1,60 @@
+    
+server:
+    port: 8095
+
+eureka:
+    client:
+        serviceUrl:
+            defaultZone: http://10.16.86.50:8090/eureka/
+#            defaultZone: http://10.16.86.31:8090/eureka/
+
+spring:
+  application:
+    name: core-user
+  datasource:
+    url: jdbc:mysql://rm-bp1o60456j2gtq0p9.mysql.rds.aliyuncs.com:3306/msmart_v3?useUnicode=true&characterEncoding=UTF-8
+    driverClassName: com.mysql.jdbc.Driver
+    username: msmart_admin
+    password: "wLzmYDKR-EBXqe#yIh9w"
+  messages:
+    basename: i18n/message;i18n/message_core_user
+    cacheSeconds: -1
+    encoding: UTF-8
+    deflanguage: zh_CN  
+
+redis:
+    host: "139.196.112.60"
+    port: 9029
+    timeout: 10000
+    password: msmart160928
+    pool:
+      maxTotal: 100
+      maxIdle: 10
+      minIdle: 1
+      maxWaitMillis: -1
+      testOnBorrow: true
+    cluster1:
+      host: 172.16.17.244
+      port: 6379
+    cluster2:
+      host: 172.16.17.245
+      port: 6379
+    cluster3:
+      host: 172.16.17.246
+      port: 6379  
+  
+#手机验证码相关
+core-user:
+  #短信相关的配置
+  sms:
+    verificationCode:
+      expire: 300 #验证码过期时间，单位为s
+      interval: 60 #验证码最小间隔时间，单位为s
+  enableLoginFailureLimit: false
+  #iam config  
+  iam:
+    iamSyn: true
+    iamHost: https://passportuat.midea.com/v1
+    iamAppId: '10010'
+    iamAppKey: sece08e6a38cd09f5c9fd8de2d57e01bf73
+    iamLocalCache: true
