@@ -28,6 +28,19 @@ spring:
 #    inetutils:
 #      preferred-networks: ^172.
 
+redis:
+    host: "10.117.183.80"
+    port: 6379
+    timeout: 5000
+    password: null
+    pool:
+      maxTotal: 100
+      maxIdle: 10
+      minIdle: 1
+      maxWaitMillis: 10000
+      testOnBorrow: true
+
+
 #国内测试接入层kafka
 kafka:
   producer:

@@ -23,10 +23,18 @@
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-feign</artifactId>
         </dependency>
+<!--         <dependency> -->
+<!-- 			<groupId>redis.clients</groupId> -->
+<!-- 			<artifactId>jedis</artifactId> -->
+<!-- 		</dependency> -->
         <dependency>
             <groupId>com.test.perf</groupId>
             <artifactId>common</artifactId>
             <version>0.0.1-snapshot</version>
+        </dependency>
+        <dependency>
+        	<groupId>org.springframework.boot</groupId>
+        	<artifactId>spring-boot-starter-data-redis</artifactId>
         </dependency>
 	</dependencies>
 	<build>
