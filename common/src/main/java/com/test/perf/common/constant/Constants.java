@@ -13,4 +13,5 @@ public class Constants {
 	public static final String REDIS_WRITE = "redis/write";
 
 	public static final String REDIS_READ = "redis/read";
+	
 }
