@@ -53,3 +53,9 @@ kafka:
     buffer.memory: "33554432"
     key.serializer: org.apache.kafka.common.serialization.ByteArraySerializer
     value.serializer: org.apache.kafka.common.serialization.ByteArraySerializer
+
+sys:
+  http:
+    maxKeepAlive: 200
+    keepAliveTimeout: 23
+    

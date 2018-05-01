@@ -17,6 +17,9 @@ public interface TestService {
 	@RequestMapping(value = Constants.HELLOWORLD, method = RequestMethod.POST)
 	Response<String> helloworld(@RequestParam("sid") String sid, @RequestParam("random") Long random);
 	
+	@RequestMapping(value = Constants.DELAY, method = RequestMethod.POST)
+	Response<String> delay(@RequestParam("sid") String sid);
+	
 	@RequestMapping(value = Constants.REDIS_READ, method = RequestMethod.POST)
 	Response<City> redisRead(@RequestParam("sid") String sid, @RequestParam("id") Integer id);
 

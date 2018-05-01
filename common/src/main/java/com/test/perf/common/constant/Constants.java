@@ -6,6 +6,8 @@ public class Constants {
 
 	public static final String HELLOWORLD = "helloworld";
 
+	public static final String DELAY = "delay";
+	
 	public static final String DB_WRITE = "db/write";
 
 	public static final String DB_READ = "db/read";

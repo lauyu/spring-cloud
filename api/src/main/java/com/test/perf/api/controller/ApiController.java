@@ -25,6 +25,11 @@ public class ApiController extends BaseController {
 		return testService.helloworld(getSid(), RandomUtils.nextLong());
 	}
 	
+	@RequestMapping("delay")
+	public Response<String> delay() {
+		return testService.delay(getSid());
+	}
+	
 	@RequestMapping("cache/read")
 	public Response<City> cacheRead(Integer id) {
 		return testService.redisRead(getSid(), id);

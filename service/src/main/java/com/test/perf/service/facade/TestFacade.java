@@ -1,6 +1,8 @@
 package com.test.perf.service.facade;
 
 import org.apache.commons.lang3.RandomUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -12,10 +14,14 @@ import org.springframework.web.bind.annotation.RestController;
 import com.test.perf.common.constant.Constants;
 import com.test.perf.common.vo.Response;
 import com.test.perf.entity.City;
+import com.test.perf.service.config.SysConfig;
 
 @RestController
 public class TestFacade extends BaseController {
+	private static final Logger LOGGER = LoggerFactory.getLogger(TestFacade.class);
 	private static final String PREFIX = "city_";
+	@Autowired
+	SysConfig config;
 	
 	@Autowired
 	RedisTemplate<String, City> redisTemplate;
@@ -23,6 +29,13 @@ public class TestFacade extends BaseController {
 	@RequestMapping(Constants.HELLOWORLD)
 	public Response<String> helloworld(Long random) {
 		return new Response<>("Hello world: "+random);
+	}
+	
+	@RequestMapping(Constants.DELAY)
+	public Response<String> delay() {
+		int t = RandomUtils.nextInt(config.getDelay().getMin(), config.getDelay().getMax());
+		sleep(t);
+		return new Response<>("delay: "+t);
 	}
 	
 	@RequestMapping(value = Constants.REDIS_READ, method = RequestMethod.POST)
@@ -41,5 +54,13 @@ public class TestFacade extends BaseController {
 	
 	private String getKey(Integer id) {
 		return PREFIX + id;
+	}
+	
+	private void sleep(int t) {
+		try {
+			Thread.sleep(t);
+		} catch (InterruptedException e) {
+			LOGGER.error("sleep error", e);
+		}
 	}
 }

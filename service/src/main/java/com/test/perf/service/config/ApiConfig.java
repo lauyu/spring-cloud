@@ -1,5 +1,6 @@
 package com.test.perf.service.config;
 
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
@@ -14,7 +15,7 @@ import com.test.perf.common.log.LoggerFilter;
 import com.test.perf.entity.City;
 
 @Configuration
-//@EnableEurekaClient
+@EnableConfigurationProperties(SysConfig.class)
 @EnableDiscoveryClient
 public class ApiConfig {
 

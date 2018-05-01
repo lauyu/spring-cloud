@@ -19,7 +19,7 @@ import org.springframework.context.annotation.ImportResource;
 @ImportResource("classpath:jedis-single.xml")
 public class ProviderServer
 {
-	@Value("${sys.http.maxKeepAlive:10}")
+	@Value("${sys.http.maxKeepAlive:100}")
 	Integer maxKeepAlive;
 	
 	@Value("${sys.http.keepAliveTimeout:60}")
@@ -40,8 +40,18 @@ public class ProviderServer
                 ((AbstractHttp11Protocol) connector.getProtocolHandler()).setMaxKeepAliveRequests(maxKeepAlive));
         factory.addConnectorCustomizers(connector ->
         ((AbstractHttp11Protocol) connector.getProtocolHandler()).setKeepAliveTimeout(keepAliveTimeout));
-        System.out.println("设置MaxKeepAliveRequests= "+maxKeepAlive);
-        System.out.println("设置KeepAliveTimeout= "+keepAliveTimeout);
+        factory.addConnectorCustomizers(connector -> {
+        	System.out.println();
+        	System.out.println("MaxThreads: "+((AbstractHttp11Protocol) connector.getProtocolHandler()).getMaxThreads());
+        	System.out.println("MaxConnections: "+((AbstractHttp11Protocol) connector.getProtocolHandler()).getMaxConnections());
+        	System.out.println("AcceptorThreadCount: "+((AbstractHttp11Protocol) connector.getProtocolHandler()).getAcceptorThreadCount());
+        	System.out.println("MaxKeepAliveRequests:"+((AbstractHttp11Protocol) connector.getProtocolHandler()).getMaxKeepAliveRequests());
+        	System.out.println("KeepAliveTimeout: "+((AbstractHttp11Protocol) connector.getProtocolHandler()).getKeepAliveTimeout());
+        	System.out.println();
+        });
+        
+//        System.out.println("设置MaxKeepAliveRequests= "+maxKeepAlive);
+//        System.out.println("设置KeepAliveTimeout= "+keepAliveTimeout);
         return factory;
     }
 
