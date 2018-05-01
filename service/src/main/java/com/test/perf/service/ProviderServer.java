@@ -2,6 +2,7 @@ package com.test.perf.service;
 
 import org.apache.coyote.http11.AbstractHttp11Protocol;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.embedded.EmbeddedServletContainerFactory;
@@ -18,41 +19,30 @@ import org.springframework.context.annotation.ImportResource;
 @ImportResource("classpath:jedis-single.xml")
 public class ProviderServer
 {
-
+	@Value("${sys.http.maxKeepAlive:10}")
+	Integer maxKeepAlive;
+	
+	@Value("${sys.http.keepAliveTimeout:60}")
+	Integer keepAliveTimeout;
+	
     public static void main( String[] args )
     {
-    	System.out.println(">>>>>> 灰度服务开始启动");
+    	System.out.println(">>>>>> service开始启动");
         SpringApplication.run(ProviderServer.class, args);
-//        ProducerManager pm = (ProducerManager) ContextUtils.getBean("producerManager");
-//		pm.init();
-//        BaseConfig baseConfig = (BaseConfig) ContextUtils.getBean("baseConfig");
-//		logger.info("-- this Release is {}",baseConfig.getRelease());
-//		if(!"dev".equals(baseConfig.getRelease())){
-//		    TransManager transManager = (TransManager) ContextUtils.getBean("transManager");
-//		    PushMsgManager pushMsgManager = (PushMsgManager) ContextUtils.getBean("pushMsgManager");
-//		    ReportMsgManager reportMsgManager = (ReportMsgManager) ContextUtils.getBean("reportMsgManager");
-//			ProducerManager producerManager = (ProducerManager)ContextUtils.getBean("producerManager");
-//		    transManager.initTrans("trans.producer");
-//		    pushMsgManager.initSmartProducer("trans.producer");
-//		    reportMsgManager.initSmartProducer("trans.producer");
-//			producerManager.initSmartProducer("");
-//		}
-//		producerManager.initSmartProducer("kafka.producer");
-
-        System.out.println(">>>>>> api启动结束");
+        System.out.println(">>>>>> service启动结束");
     }
     
-//    @Bean
-//    public EmbeddedServletContainerFactory servletContainerFactory() {
-//        TomcatEmbeddedServletContainerFactory factory = new TomcatEmbeddedServletContainerFactory();
-//
-//        factory.addConnectorCustomizers(connector ->
-//                ((AbstractHttp11Protocol) connector.getProtocolHandler()).setMaxKeepAliveRequests(walletConfig.getMaxKeepAliveRequests()));
-//        factory.addConnectorCustomizers(connector ->
-//        ((AbstractHttp11Protocol) connector.getProtocolHandler()).setKeepAliveTimeout(walletConfig.getKeepAliveTimeout()));
-//        System.out.println("设置MaxKeepAliveRequests= "+walletConfig.getMaxKeepAliveRequests());
-//        System.out.println("设置KeepAliveTimeout= "+walletConfig.getKeepAliveTimeout());
-//        return factory;
-//    }
+    @Bean
+    public EmbeddedServletContainerFactory servletContainerFactory() {
+        TomcatEmbeddedServletContainerFactory factory = new TomcatEmbeddedServletContainerFactory();
+
+        factory.addConnectorCustomizers(connector ->
+                ((AbstractHttp11Protocol) connector.getProtocolHandler()).setMaxKeepAliveRequests(maxKeepAlive));
+        factory.addConnectorCustomizers(connector ->
+        ((AbstractHttp11Protocol) connector.getProtocolHandler()).setKeepAliveTimeout(keepAliveTimeout));
+        System.out.println("设置MaxKeepAliveRequests= "+maxKeepAlive);
+        System.out.println("设置KeepAliveTimeout= "+keepAliveTimeout);
+        return factory;
+    }
 
 }
