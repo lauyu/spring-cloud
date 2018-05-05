@@ -18,7 +18,8 @@ eureka:
     enableSelfPreservation: true #仅限于测试开发阶段，关闭自我保护机制
   instance:
     hostname: peer1 
-#    instanceId: ${spring.application.name}:${vcap.application.instance_id:${spring.application.instance_id:${random.value}}}
+    preferIpAddress: true
+    instanceId: ${spring.cloud.client.ipAddress}:${server.port}
   client:
 #    register-with-eureka: false
 #    fetch-registry: false
@@ -35,7 +36,8 @@ eureka:
     enableSelfPreservation: true #仅限于测试开发阶段，关闭自我保护机制
   instance:
     hostname: peer2 
-#    instanceId: ${spring.application.name}:${vcap.application.instance_id:${spring.application.instance_id:${random.value}}}
+    preferIpAddress: true
+    instanceId: ${spring.cloud.client.ipAddress}:${server.port}
   client:
 #    register-with-eureka: false
 #    fetch-registry: false
@@ -52,7 +54,8 @@ eureka:
     enableSelfPreservation: true #仅限于测试开发阶段，关闭自我保护机制
   instance:
     hostname: peer3
-#    instanceId: ${spring.application.name}:${vcap.application.instance_id:${spring.application.instance_id:${random.value}}}
+    preferIpAddress: true
+    instanceId: ${spring.cloud.client.ipAddress}:${server.port}
   client:
 #    register-with-eureka: false
 #    fetch-registry: false
