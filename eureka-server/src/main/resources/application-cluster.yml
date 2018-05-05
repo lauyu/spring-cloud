@@ -1,49 +1,62 @@
-# eureka服务器  peer1
-spring:
-  profiles: 
-    active: peer1
-  
 server:
   port: 8090
-  
-eureka:
-  instance:
-    preferIpAddress: true
-    hostname: peer1
-  client:
-    serviceUrl:
-      defaultZone: http://peer2/eureka/
-      
-      
-# eureka服务器  peer2
+
 spring:
-  profiles: 
-    active: peer2
+  application:
+    name: eureka-server
+
+logging:
+  path: /app/eureka-server/conf/logback.xml
   
-server:
-  port: 8090
-  
+
+---      
+spring:
+  profiles: peer1  
 eureka:
+#  waitTimeInMsWhenSyncEmpty: 0
+  server:
+    enableSelfPreservation: true #仅限于测试开发阶段，关闭自我保护机制
   instance:
-    preferIpAddress: true
-    hostname: peer2
+    hostname: peer1 
+#    instanceId: ${spring.application.name}:${vcap.application.instance_id:${spring.application.instance_id:${random.value}}}
   client:
+#    register-with-eureka: false
+#    fetch-registry: false
     serviceUrl:
-      defaultZone: http://peer3/eureka/
+      defaultZone: http://peer2:${server.port}/eureka/
 
 
-# eureka服务器  peer3
+---      
 spring:
-  profiles: 
-    active: peer3
-  
-server:
-  port: 8090
-  
+  profiles: peer2  
 eureka:
+#  waitTimeInMsWhenSyncEmpty: 0
+  server:
+    enableSelfPreservation: true #仅限于测试开发阶段，关闭自我保护机制
   instance:
-    preferIpAddress: true
+    hostname: peer2 
+#    instanceId: ${spring.application.name}:${vcap.application.instance_id:${spring.application.instance_id:${random.value}}}
+  client:
+#    register-with-eureka: false
+#    fetch-registry: false
+    serviceUrl:
+      defaultZone: http://peer3:${server.port}/eureka/
+
+
+---      
+spring:
+  profiles: peer3  
+eureka:
+#  waitTimeInMsWhenSyncEmpty: 0
+  server:
+    enableSelfPreservation: true #仅限于测试开发阶段，关闭自我保护机制
+  instance:
     hostname: peer3
+#    instanceId: ${spring.application.name}:${vcap.application.instance_id:${spring.application.instance_id:${random.value}}}
   client:
+#    register-with-eureka: false
+#    fetch-registry: false
     serviceUrl:
-      defaultZone: http://peer1/eureka/      
+      defaultZone: http://peer1:${server.port}/eureka/
+
+
