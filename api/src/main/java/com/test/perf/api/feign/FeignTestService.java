@@ -12,13 +12,16 @@ import com.test.perf.common.vo.Response;
 import com.test.perf.entity.City;
 
 @FeignClient(name = Constants.SERVICE_NAME, configuration = FeignConfig.class)
-public interface TestService {
+public interface FeignTestService {
 
+	@RequestMapping(value = "noexist", method = RequestMethod.POST)
+	void noexist();
+	
 	@RequestMapping(value = Constants.HELLOWORLD, method = RequestMethod.POST)
 	Response<String> helloworld(@RequestParam("sid") String sid, @RequestParam("random") Long random);
 	
 	@RequestMapping(value = Constants.DELAY, method = RequestMethod.POST)
-	Response<String> delay(@RequestParam("sid") String sid);
+	Response<String> delay(@RequestParam("sid") String sid, @RequestParam("delay") Integer delay);
 	
 	@RequestMapping(value = Constants.REDIS_READ, method = RequestMethod.POST)
 	Response<City> redisRead(@RequestParam("sid") String sid, @RequestParam("id") Integer id);

@@ -23,7 +23,7 @@ public class TestFacade extends BaseController {
 	@Autowired
 	SysConfig config;
 	
-	@Autowired
+//	@Autowired
 	RedisTemplate<String, City> redisTemplate;
 	
 	@RequestMapping(Constants.HELLOWORLD)
@@ -32,8 +32,8 @@ public class TestFacade extends BaseController {
 	}
 	
 	@RequestMapping(Constants.DELAY)
-	public Response<String> delay() {
-		int t = RandomUtils.nextInt(config.getDelay().getMin(), config.getDelay().getMax());
+	public Response<String> delay(Integer delay) {
+		int t = delay==null? RandomUtils.nextInt(config.getDelay().getMin(), config.getDelay().getMax()):delay;
 		sleep(t);
 		return new Response<>("delay: "+t);
 	}

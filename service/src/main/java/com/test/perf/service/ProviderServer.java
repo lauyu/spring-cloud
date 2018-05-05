@@ -16,7 +16,7 @@ import org.springframework.context.annotation.ImportResource;
  *
  */
 @SpringBootApplication(scanBasePackages= {"com.test"})
-@ImportResource("classpath:jedis-single.xml")
+//@ImportResource("classpath:jedis-single.xml")
 public class ProviderServer
 {
 	@Value("${sys.http.maxKeepAlive:100}")

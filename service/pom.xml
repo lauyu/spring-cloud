@@ -12,34 +12,48 @@
 	<name>service</name>
 	<dependencies>
 		<dependency>
-		    <groupId>org.springframework.boot</groupId>
-		    <artifactId>spring-boot-starter-web</artifactId>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-eureka</artifactId>
 		</dependency>
 		<dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-feign</artifactId>
-        </dependency>
-<!--         <dependency> -->
-<!-- 			<groupId>redis.clients</groupId> -->
-<!-- 			<artifactId>jedis</artifactId> -->
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-feign</artifactId>
+		</dependency>
+		<!-- <dependency> -->
+		<!-- <groupId>redis.clients</groupId> -->
+		<!-- <artifactId>jedis</artifactId> -->
+		<!-- </dependency> -->
+		<dependency>
+			<groupId>com.test.perf</groupId>
+			<artifactId>common</artifactId>
+			<version>0.0.1-snapshot</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-redis</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-actuator</artifactId>
+		</dependency>
+<!-- 		<dependency> -->
+<!-- 			<groupId>org.jolokia</groupId> -->
+<!-- 			<artifactId>jolokia-core</artifactId> -->
 <!-- 		</dependency> -->
-        <dependency>
-            <groupId>com.test.perf</groupId>
-            <artifactId>common</artifactId>
-            <version>0.0.1-snapshot</version>
-        </dependency>
-        <dependency>
-        	<groupId>org.springframework.boot</groupId>
-        	<artifactId>spring-boot-starter-data-redis</artifactId>
-        </dependency>
-        <dependency>
-        	<groupId>org.springframework.boot</groupId>
-        	<artifactId>spring-boot-starter-actuator</artifactId>
-    	</dependency>
+<!-- 		<dependency> -->
+<!-- 			<groupId>org.redisson</groupId> -->
+<!-- 			<artifactId>redisson</artifactId> -->
+<!-- 			<version>2.7.0</version> -->
+<!-- 		</dependency> -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
 	</dependencies>
 	<build>
 		<plugins>
@@ -49,21 +63,21 @@
 			</plugin>
 		</plugins>
 		<resources>
-			 <resource>
-	            <directory>src/main/resources</directory>
-	            <includes>
-	                <include>*.xml</include>
-	                <include>*.yml</include>
-	            </includes>
-	            <filtering>false</filtering>
-	        </resource>
-	        <resource>
-	            <directory>src/main/java</directory>
-	            <includes>
-	                <include>**/*.xml</include>
-	            </includes>
-	            <filtering>false</filtering>
-	        </resource>
-	    </resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<includes>
+					<include>*.xml</include>
+					<include>*.yml</include>
+				</includes>
+				<filtering>false</filtering>
+			</resource>
+			<resource>
+				<directory>src/main/java</directory>
+				<includes>
+					<include>**/*.xml</include>
+				</includes>
+				<filtering>false</filtering>
+			</resource>
+		</resources>
 	</build>
 </project>

@@ -6,12 +6,14 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.embedded.EmbeddedServletContainerFactory;
 import org.springframework.boot.context.embedded.tomcat.TomcatEmbeddedServletContainerFactory;
+import org.springframework.cloud.client.circuitbreaker.EnableCircuitBreaker;
 import org.springframework.context.annotation.Bean;
 
 /**
  * Hello world!
  *
  */
+@EnableCircuitBreaker
 @SpringBootApplication(scanBasePackages= {"com.test"})
 public class ApiServer
 {
@@ -36,6 +38,8 @@ public class ApiServer
 //		}
 //		producerManager.initSmartProducer("kafka.producer");
 
+        Converter
+        
         System.out.println(">>>>>> api启动结束");
     }
     

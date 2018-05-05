@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.test.perf.api.config.SysConfig;
-import com.test.perf.api.feign.TestService;
+import com.test.perf.api.service.TestService;
 import com.test.perf.common.vo.Response;
 import com.test.perf.entity.City;
 
@@ -23,22 +23,25 @@ public class ApiController extends BaseController {
 	@RequestMapping("helloworld")
 	public Response<String> helloworld() {
 		return testService.helloworld(getSid(), RandomUtils.nextLong());
+//		return new Response<String>(data);
 	}
 	
 	@RequestMapping("delay")
-	public Response<String> delay() {
-		return testService.delay(getSid());
+	public Response<?> delay() {
+//		testService.delay(getSid());
+		testService.testAsync(getSid());
+		return new Response<>();
 	}
 	
-	@RequestMapping("cache/read")
-	public Response<City> cacheRead(Integer id) {
-		return testService.redisRead(getSid(), id);
-	}
-	
-	@RequestMapping("cache/write")
-	public Response<?> cacheWrite(City city) {
-		return testService.redisWrite(getSid(), city);
-	}
+//	@RequestMapping("cache/read")
+//	public Response<City> cacheRead(Integer id) {
+//		return testService.redisRead(getSid(), id);
+//	}
+//	
+//	@RequestMapping("cache/write")
+//	public Response<?> cacheWrite(City city) {
+//		return testService.redisWrite(getSid(), city);
+//	}
 	
 	
 }

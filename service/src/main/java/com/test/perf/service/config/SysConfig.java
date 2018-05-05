@@ -5,7 +5,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @ConfigurationProperties(prefix="sys")
 public class SysConfig {
 
-	Delay delay;
+	Delay delay=new Delay();
 	
 	public Delay getDelay() {
 		return delay;
