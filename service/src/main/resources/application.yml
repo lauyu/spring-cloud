@@ -31,6 +31,10 @@ spring:
 #    inetutils:
 #      preferred-networks: ^172.
 
+management:
+  security:
+    enabled: false
+
 redis:
     host: "10.117.183.80"
     port: 6379
